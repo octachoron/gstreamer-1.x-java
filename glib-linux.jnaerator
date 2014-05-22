@@ -1,4 +1,6 @@
--library Gtk
+-library glib-2.0
+-package glib20
+
 /usr/include/glib-2.0/glib.h
 
 // Need to list all the files that contain symbols we want to bind:
@@ -6,6 +8,8 @@
 
 -I/usr/include
 -I/usr/include/glib-2.0
+-I/usr/include/x86_64-linux-gnu/
+-I/usr/lib/x86_64-linux-gnu/glib-2.0/include
 
 // Trick cdefs.h into thinking we're gcc
 -D__GNUC__=4
