@@ -1,0 +1,16 @@
+-library Gtk
+/usr/include/glib-2.0/glib.h
+
+// Need to list all the files that contain symbols we want to bind:
+/usr/include/glib-2.0/glib/*.h
+
+-I/usr/include
+-I/usr/include/glib-2.0
+
+// Trick cdefs.h into thinking we're gcc
+-D__GNUC__=4
+
+-mode Directory
+-parseChunks
+
+-Tgint=int
