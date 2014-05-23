@@ -48,8 +48,7 @@
     <!-- Create the distribution directory -->
     <mkdir dir="${dist}/lib"/>
 
-    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${dist}/lib/glib-java-test-${DSTAMP}.jar" basedir="${build}"/>
+    <jar jarfile="${dist}/lib/glib-java-test.jar" basedir="${build}"/>
   </target>
 
   <target name="clean-compiled"
