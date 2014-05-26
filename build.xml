@@ -35,7 +35,7 @@
     <!-- Compile the java code from ${src} into ${build} -->
     <javac srcdir="${glib-src}" destdir="${build}">
         <classpath>
-            <pathelement location="bridj.jar" />
+            <pathelement location="jnaerator.jar" />
             <pathelement location="${build}" />
         </classpath>
     </javac>
