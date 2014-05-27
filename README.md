@@ -22,12 +22,16 @@ However, the use of JNAerator to create the new gstreamer bindings is one among 
 
 ### Building on Linux
 
-The repo includes an Ant build.xml which can be used to run the JNAerator step on glib (the jnaerate-glib target), and compile the results (compile-glib). The compile target does glib only at the moment. The JNAerated Java sources use [BridJ](https://code.google.com/p/bridj/), a release jar is included in the repo.
+The repo includes an Ant build.xml which can be used to run the JNAerator step on glib (the jnaerate-glib target), and compile the results (compile-glib). The compile target does glib only at the moment. The JNAerated Java sources use [BridJ](https://code.google.com/p/bridj/), which is included in the shaded jnaerator.jar.
 
-The Linux build process was only tested on Ubuntu 14.04. A simple 
+A simple 
 
 ```
 ant compile
 ```
 
-should yield what we can do at the moment.
+should yield what we can do at the moment. There is also a simple test to work the bindings to GList. It can be run by saying
+
+```
+ant run-tests
+```
