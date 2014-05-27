@@ -63,6 +63,8 @@
     <java classname="org.gstreamer.test.GListTest">
       <classpath>
         <pathelement location="jnaerator.jar" />
+          <!-- jnaerator.jar is a shaded jar with BridJ included, on the
+               classpath for this reason -->
         <pathelement location="${build}" />
         <pathelement location="${tests-bin}" />
       </classpath>
