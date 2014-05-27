@@ -19,3 +19,5 @@
 -parseChunks
 
 -Tgint=int
+-Tgpointer=void*
+-Tgboolean=gint
