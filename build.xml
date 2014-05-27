@@ -5,8 +5,12 @@
   <!-- set global properties for this build -->
   <property name="build" location="build"/>
   <property name="dist"  location="dist"/>
+  <property name="tests"  location="tests"/>
+    
   <property name="jnaerator-output" location="src/lowlevel"/>
   <property name="glib-src" location="${jnaerator-output}/glib20"/>
+  <property name="tests-src" location="${tests}/src"/>
+  <property name="tests-bin" location="${tests}/bin"/>
 
   <target name="init">
     <!-- Create the time stamp -->
@@ -14,6 +18,7 @@
     <!-- Create the build directory structure used by compile -->
     <mkdir dir="${build}"/>
     <mkdir dir="${jnaerator-output}"/>
+    <mkdir dir="${tests-bin}"/>
   </target>
 
   <target name="jnaerate-glib">
@@ -40,9 +45,29 @@
         </classpath>
     </javac>
   </target>
-
+  
   <target name="compile" depends="compile-glib" />
+  
+  <target name="compile-tests" depends="compile">
+  	<javac srcdir="${tests-src}" destdir="${tests-bin}">
+  	  <classpath>
+  	    <pathelement location="jnaerator.jar" />
+  	  	<pathelement location="${build}" />
+  	  </classpath>
+  	</javac>
+  </target>
 
+  <target name="run-tests" depends="compile-tests">
+    <!-- Run our single test for now -->
+    <java classname="org.gstreamer.test.GListTest">
+      <classpath>
+        <pathelement location="jnaerator.jar" />
+        <pathelement location="${build}" />
+        <pathelement location="${tests-bin}" />
+      </classpath>
+    </java>
+  </target>
+  
   <target name="dist" depends="compile"
         description="generate the distribution" >
     <!-- Create the distribution directory -->
@@ -65,9 +90,14 @@
     </delete>
     <delete dir="${jnaerator-output}" />
   </target>
+  
+  <target name="clean-tests"
+    	description="clean up compiled test class files">
+    <delete dir="${tests-bin}"/>
+  </target>
 
   <target name="clean"
         description="clean up everything"
-        depends="clean-compiled,clean-jnaerator"/>
+        depends="clean-tests,clean-compiled,clean-jnaerator"/>
 
 </project>
