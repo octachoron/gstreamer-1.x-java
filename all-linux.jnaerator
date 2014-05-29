@@ -1,0 +1,37 @@
+-library gio-2.0
+
+// Need to list all the files that contain symbols we want to bind:
+/usr/include/glib-2.0/gio/*.h
+
+-library gobject-2.0
+
+/usr/include/glib-2.0/gobject/gobject.h
+/usr/include/glib-2.0/gobject/*.h
+
+-library glib-2.0
+-package glib20
+
+/usr/include/glib-2.0/glib.h
+/usr/include/glib-2.0/glib/*.h
+
+-I/usr/include
+-I/usr/include/glib-2.0
+-I/usr/include/glib-2.0/gobject
+-I/usr/include/glib-2.0/gio
+-I/usr/include/glib-2.0/glib
+-I/usr/include/x86_64-linux-gnu/
+-I/usr/lib/x86_64-linux-gnu/glib-2.0/include
+-I/usr/lib64/glib-2.0/include
+
+// Trick cdefs.h into thinking we're gcc
+-D__GNUC__=4
+
+-DGIO_COMPILATION=1
+-DGOBJECT_COMPILATION=1
+
+-mode Directory
+-parseChunks
+
+-Tgint=int
+-Tgpointer=void*
+-Tgboolean=gint

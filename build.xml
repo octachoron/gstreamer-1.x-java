@@ -63,6 +63,29 @@
 
   <target name="jnaerate" depends="jnaerate-glib" />
 
+  <target name="jnaerate-allinone">
+    <java jar="jnaerator.jar" fork="true">
+      <arg value="all-linux.jnaerator" />
+      <arg value="-mode" />
+      <arg value="Directory" />
+      <arg value="-f" />
+      <arg value="-v" />
+      <arg value="-o" />
+      <arg value="${jnaerator-output}" />
+    </java>
+  </target>
+
+  <target name="compile-allinone"
+          depends="init,jnaerate-allinone"
+          description="compile all bindings">
+    <javac srcdir="${glib-src}" destdir="${build}">
+      <classpath>
+        <pathelement location="jnaerator.jar" />
+        <pathelement location="${build}" />
+      </classpath>
+    </javac>
+  </target>
+
   <target name="compile-glib"
           depends="init,jnaerate-glib"
           description="compile the glib bindings">
