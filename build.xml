@@ -8,7 +8,11 @@
   <property name="tests" location="tests" />
 
   <property name="jnaerator-output" location="src/lowlevel" />
+
   <property name="glib-src" location="${jnaerator-output}/glib20" />
+  <property name="gobject-src" location="${jnaerator-output}/gobject" />
+  <property name="gio-src" location="${jnaerator-output}/gio" />
+
   <property name="tests-src" location="${tests}/src" />
   <property name="tests-bin" location="${tests}/bin" />
 
@@ -33,6 +37,30 @@
     </java>
   </target>
 
+  <target name="jnaerate-gobject">
+    <java jar="jnaerator.jar" fork="true">
+      <arg value="gobject-linux.jnaerator" />
+      <arg value="-mode" />
+      <arg value="Directory" />
+      <arg value="-f" />
+      <arg value="-v" />
+      <arg value="-o" />
+      <arg value="${jnaerator-output}" />
+    </java>
+  </target>
+
+  <target name="jnaerate-gio">
+    <java jar="jnaerator.jar" fork="true">
+      <arg value="gio-linux.jnaerator" />
+      <arg value="-mode" />
+      <arg value="Directory" />
+      <arg value="-f" />
+      <arg value="-v" />
+      <arg value="-o" />
+      <arg value="${jnaerator-output}" />
+    </java>
+  </target>
+
   <target name="jnaerate" depends="jnaerate-glib" />
 
   <target name="compile-glib"
@@ -40,6 +68,17 @@
           description="compile the glib bindings">
     <!-- Compile the java code from ${src} into ${build} -->
     <javac srcdir="${glib-src}" destdir="${build}">
+      <classpath>
+        <pathelement location="jnaerator.jar" />
+        <pathelement location="${build}" />
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="compile-gio-gobject"
+          depends="init,jnaerate-gio,jnaerate-gobject"
+          description="compile the gio and gobject bindings">
+    <javac srcdir="${gio-src}:${gobject-src}" destdir="${build}">
       <classpath>
         <pathelement location="jnaerator.jar" />
         <pathelement location="${build}" />
