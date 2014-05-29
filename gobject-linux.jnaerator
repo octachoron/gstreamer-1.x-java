@@ -1,4 +1,6 @@
--library GObject
+-library gobject-2.0
+-package gobject20
+
 /usr/include/glib-2.0/gobject/gobject.h
 
 // Need to list all the files that contain symbols we want to bind:
