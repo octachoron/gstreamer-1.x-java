@@ -18,7 +18,6 @@
 -DGIO_COMPILATION=1
 
 -mode Directory
--parseChunks
 
 -Tgint=int
 -Tgpointer=void*

@@ -16,7 +16,6 @@
 -D__GNUC__=4
 
 -mode Directory
--parseChunks
 
 -Tgint=int
 -Tgpointer=void*
