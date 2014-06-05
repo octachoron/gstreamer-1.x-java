@@ -22,7 +22,7 @@ However, the use of JNAerator to create the new gstreamer bindings is one among 
 
 ### Building on Linux
 
-The repo includes an Ant build.xml which can be used to run the JNAerator step on glib (the jnaerate-glib target), and compile the results (compile-glib). The compile target does glib only at the moment. The JNAerated Java sources use [BridJ](https://code.google.com/p/bridj/), which is included in the shaded jnaerator.jar.
+The repo includes an Ant build.xml which can be used to run the JNAerator step on all of glib (the ```jnaerate``` target), and compile the results (the ```compile``` target). The JNAerated Java sources use [BridJ](https://code.google.com/p/bridj/), which is included in the shaded jnaerator.jar.
 
 A simple 
 
