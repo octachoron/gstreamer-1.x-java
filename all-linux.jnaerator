@@ -34,3 +34,5 @@
 -Tgint=int
 -Tgpointer=void*
 -Tgboolean=gint
+
+-TGType=size_t
