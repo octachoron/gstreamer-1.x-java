@@ -18,6 +18,10 @@
 -library gmodule-2.0
 /usr/include/glib-2.0/gmodule.h
 
+//Private functions declared in the headers, but not exported in any shared libs
+-skipFunctions _g_utf8_make_valid
+-skipFunctions _g_log_fallback_handler
+
 -I/usr/include
 -I/usr/include/glib-2.0
 -I/usr/include/glib-2.0/gobject
