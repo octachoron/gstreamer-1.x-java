@@ -5,6 +5,7 @@
 
 -library gobject-2.0
 
+/usr/include/glib-2.0/glib-object.h
 /usr/include/glib-2.0/gobject/gobject.h
 /usr/include/glib-2.0/gobject/*.h
 
