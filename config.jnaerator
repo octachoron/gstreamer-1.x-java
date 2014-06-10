@@ -14,6 +14,10 @@
 /usr/include/glib-2.0/glib.h
 /usr/include/glib-2.0/glib/*.h
 
+//GThread has its own separate shared library
+-library gthread-2.0
+/usr/include/glib-2.0/glib/gthread.h
+
 //GModule has its own separate shared library
 -library gmodule-2.0
 /usr/include/glib-2.0/gmodule.h
