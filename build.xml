@@ -9,7 +9,7 @@
 
   <property name="jnaerator-output" location="src/lowlevel" />
 
-  <property name="glib-src" location="${jnaerator-output}/glib20" />
+  <property name="glib-src" location="${jnaerator-output}/glib" />
 
   <property name="tests-src" location="${tests}/src" />
   <property name="tests-bin" location="${tests}/bin" />

@@ -1,7 +1,7 @@
 package org.gstreamer.test;
 
-import glib20.GList;
-import glib20.Glib20Library;
+import glib.GList;
+import glib.Glib20Library;
 
 import org.bridj.Pointer;
 
