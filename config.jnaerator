@@ -23,10 +23,7 @@
 /usr/include/glib-2.0/gmodule.h
 
 //Private functions declared in the headers, but not exported in any shared libs
--skipFunctions _g_utf8_make_valid
--skipFunctions _g_log_fallback_handler
--skipFunctions _g_getenv_nomalloc
--skipFunctions _g_async_queue_get_mutex
+-skipFunctions _.*
 
 -I/usr/include
 -I/usr/include/glib-2.0
