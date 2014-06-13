@@ -60,8 +60,7 @@
   <target name="run-tests"
           depends="compile-tests"
           description="build everything and run all automated tests">
-    <!-- Run our single test for now -->
-    <java classname="org.gstreamer.test.GListTest">
+    <java classname="org.gstreamer.test.TestsMain">
       <classpath>
         <pathelement location="jnaerator.jar" />
           <!-- jnaerator.jar is a shaded jar with BridJ included, on the
