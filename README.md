@@ -20,7 +20,7 @@ A simple
 ant compile
 ```
 
-should yield what we can do at the moment. There is also a simple test to work the bindings to GList. It can be run by saying
+should yield what we can do at the moment. There are also a few tests to work the GLib bindings. They can be run by saying
 
 ```
 ant run-tests
