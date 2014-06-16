@@ -23,6 +23,17 @@
 //Private functions declared in the headers, but not exported in any shared libs
 -skipFunctions _.*
 
+//Private functions that do not begin with an underscore
+-skipFunctions g_value_c_init
+-skipFunctions g_value_types_init
+-skipFunctions g_enum_types_init
+-skipFunctions g_param_type_init
+-skipFunctions g_boxed_type_init
+-skipFunctions g_object_type_init
+-skipFunctions g_param_spec_types_init
+-skipFunctions g_value_transforms_init
+-skipFunctions g_signal_init
+
 -I/usr/include
 -I/usr/include/glib-2.0
 -I/usr/include/glib-2.0/gobject
