@@ -8,6 +8,7 @@ public class TestsMain {
 	public static void main(String[] args) {
 		GListTest.main(null);
 		QSortTest.main(null);
+		Singleton.main(null);
 	}
 
 }
