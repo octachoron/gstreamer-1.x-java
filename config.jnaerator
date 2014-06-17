@@ -56,3 +56,5 @@
 -Tgboolean=gint
 
 -TGType=size_t
+
+-TGData=void
