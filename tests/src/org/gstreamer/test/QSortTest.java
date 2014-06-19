@@ -5,6 +5,9 @@ import glib.Glib20Library.GCompareDataFunc;
 
 import org.bridj.BridJ;
 import org.bridj.Pointer;
+import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * First try to hand-port GLib's own qsort-test.c.
@@ -21,7 +24,8 @@ public class QSortTest {
 		}
 	}
 
-	public static void main(String[] args) {
+	@Test
+	public void sortRandomNumbers() {
 		System.out.println("QSortTest started");
 		/*
 		 * TODO:
@@ -41,14 +45,7 @@ public class QSortTest {
 				Pointer.pointerTo((Glib20Library.GCompareDataFunc)callback), null);
 
 		for (i = 0; i < SIZE; i++) {
-			/*
-			 * FIXME: the original test uses g_assert() here, which is a function macro. Can that be used?
-			 * If yes, how? If no, can JNAerator do function macros somehow? If yes, how? If no, what to do?
-			 *
-			 * We can get around this with Java assertion this time...
-			 */
-
-			assert array.getIntAtIndex(i) <= array.getIntAtIndex(i + 1) : "Array not sorted at index " + i;
+			assertTrue("Array not sorted at index " + i, array.getIntAtIndex(i) <= array.getIntAtIndex(i + 1));
 		}
 
 		// 0 elements is a valid case

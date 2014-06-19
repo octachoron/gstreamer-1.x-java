@@ -11,6 +11,12 @@ import org.bridj.BridJ;
 import org.bridj.Pointer;
 import org.bridj.StructObject;
 import org.bridj.ann.Field;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 
 /**
  * Ported from GLib's own singleton.c.
@@ -63,8 +69,10 @@ public class Singleton {
 	private static Pointer<MySingleton> the_one_and_only = null;
 	
 	private static Pointer<?> my_singleton_parent_class = null;
+	private static MySingletonConstructorCallback my_singleton_constructor = new MySingletonConstructorCallback();
 	
 	public static class MySingletonConstructorCallback extends GObjectClass.constructor_callback {
+		@Override
 		public Pointer<GObject> apply(long type, //size_t in the original
 				int n_construct_properties,
 				Pointer<GObjectConstructParam> construct_properties) {
@@ -84,7 +92,7 @@ public class Singleton {
 	public static class MySingletonInitCallback extends GInstanceInitFunc {
 		@Override
 		public void apply(long instance, long g_class) {
-			assert the_one_and_only == null : "Singleton instance not null in Singleton test";
+			assertNull("Singleton instance not null in Singleton test", the_one_and_only);
 			the_one_and_only = Pointer.pointerToAddress(instance).as(MySingleton.class);
 		}
 	}
@@ -94,15 +102,13 @@ public class Singleton {
 		public void apply(long g_class, long class_data) {
 			my_singleton_parent_class = Gobject20Library.g_type_class_peek_parent(Pointer.pointerToAddress(g_class));
 			my_singleton_parent_class.as(GObjectClass.class).get().constructor(
-				Pointer.pointerTo(new MySingletonConstructorCallback()).as(GObjectClass.constructor_callback.class)
+				Pointer.pointerTo(my_singleton_constructor).as(GObjectClass.constructor_callback.class)
 			);
 		}
 	}
 	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+	@Test
+	public void verifySingletonCreation() {
 		System.out.println("Singleton test started");
 		
 		Pointer<MySingleton> singleton, obj;
@@ -132,10 +138,10 @@ public class Singleton {
 		
 		// create the singleton
 		singleton = Gobject20Library.g_object_new(my_singleton_gtype, null).as(MySingleton.class);
-		assert singleton != null : "singleton == null in Singleton test";
+		assertNotNull("singleton == null in Singleton test", singleton);
 		// assert _singleton_ creation
 		obj = Gobject20Library.g_object_new(my_singleton_gtype, null).as(MySingleton.class);
-		assert singleton == obj;
+		assertEquals("creation not singleton in Singleton test", singleton, obj);
 		Gobject20Library.g_object_unref(obj);
 		// shutdown
 		Gobject20Library.g_object_unref(singleton);

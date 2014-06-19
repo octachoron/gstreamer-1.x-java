@@ -51,6 +51,8 @@
           description="build all bindings and automated tests">
     <javac srcdir="${tests-src}" destdir="${tests-bin}">
       <classpath>
+        <pathelement location="junit-4.11.jar" />
+        <pathelement location="hamcrest-core-1.3.jar" />
         <pathelement location="jnaerator.jar" />
         <pathelement location="${build}" />
       </classpath>
@@ -60,14 +62,19 @@
   <target name="run-tests"
           depends="compile-tests"
           description="build everything and run all automated tests">
-    <java classname="org.gstreamer.test.TestsMain">
+    <java classname="org.junit.runner.JUnitCore">
       <classpath>
+        <pathelement location="junit-4.11.jar" />
+        <pathelement location="hamcrest-core-1.3.jar" />
         <pathelement location="jnaerator.jar" />
           <!-- jnaerator.jar is a shaded jar with BridJ included, on the
                classpath for this reason -->
         <pathelement location="${build}" />
         <pathelement location="${tests-bin}" />
       </classpath>
+      <arg value="org.gstreamer.test.GListTest" />
+      <arg value="org.gstreamer.test.QSortTest" />
+      <arg value="org.gstreamer.test.Singleton" />
     </java>
   </target>
 

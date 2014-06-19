@@ -1,16 +1,24 @@
 package org.gstreamer.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
+
 import glib.GList;
 import glib.Glib20Library;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.bridj.Pointer;
+import org.junit.Test;
 
 /**
  * Do simple operations on a GList, see if it works as expected.
  */
 public class GListTest {
 	
-	public static void main(String[] args) {
+	@Test
+	public void insertAndIterate() {
 		// Allocate test data
 		Pointer<Integer> test = Pointer.allocateInt();
 		test.set(42);
@@ -24,13 +32,13 @@ public class GListTest {
 		
 		// See what happened
 		int listLength = Glib20Library.g_list_length(list);
-		System.out.println("List length: " + listLength); //should see 2 here
-		
-		System.out.print("Elements in list:");
+		assertEquals(2, listLength);
+
+		final ArrayList<Integer> results = new ArrayList<Integer>(2);
 		for (int n = 0; n < listLength; n++) {
-			System.out.print(" " + Glib20Library.g_list_nth_data(list, n).as(Integer.class).get());
+			results.add(Glib20Library.g_list_nth_data(list, n).as(Integer.class).get());
 		}
-		System.out.println(); //should see 39, then 42
+		assertArrayEquals(Arrays.asList(39, 42).toArray(), results.toArray());
 		
 		// Free everything we allocated dynamically
 		test.release();
