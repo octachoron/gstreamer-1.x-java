@@ -44,7 +44,7 @@ public class QSortTest {
 		Glib20Library.g_qsort_with_data(array, SIZE, BridJ.sizeOf(Integer.class),
 				Pointer.pointerTo((Glib20Library.GCompareDataFunc)callback), null);
 
-		for (i = 0; i < SIZE; i++) {
+		for (i = 0; i < SIZE - 1; i++) {
 			assertTrue("Array not sorted at index " + i, array.getIntAtIndex(i) <= array.getIntAtIndex(i + 1));
 		}
 
