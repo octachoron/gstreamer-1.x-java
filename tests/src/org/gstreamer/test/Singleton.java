@@ -60,7 +60,7 @@ public class Singleton {
 		}
 		
 		@Field(0)
-		public MySingletonClass parent_instance(GObjectClass parent_class) {
+		public MySingletonClass parent_class(GObjectClass parent_class) {
 			this.io.setNativeObjectField(this, 0, parent_class);
 			return this;
 		}
