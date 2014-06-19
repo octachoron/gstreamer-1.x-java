@@ -101,7 +101,7 @@ public class Singleton {
 		@Override
 		public void apply(long g_class, long class_data) {
 			my_singleton_parent_class = Gobject20Library.g_type_class_peek_parent(Pointer.pointerToAddress(g_class));
-			my_singleton_parent_class.as(GObjectClass.class).get().constructor(
+			Pointer.pointerToAddress(g_class).as(GObjectClass.class).get().constructor(
 				Pointer.pointerTo(my_singleton_constructor).as(GObjectClass.constructor_callback.class)
 			);
 		}
