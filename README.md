@@ -20,7 +20,7 @@ A simple
 ant compile
 ```
 
-should yield what we can do at the moment. There are also a few tests to work the GLib bindings. They can be run by downloading the junit and hamcrest-core jars from [here](https://github.com/junit-team/junit/wiki/Download-and-Install) (JUnit 4.11 and Hamcrest core 1.3 tested), then saying
+should yield what we can do at the moment. There are also a few tests to work the GLib bindings. They can be run by saying
 
 ```
 ant run-tests
