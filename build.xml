@@ -23,7 +23,25 @@
     <mkdir dir="${tests-bin}" />
   </target>
 
-  <target name="jnaerate">
+  <target name="probe-libs" depends="init">
+    <!-- JNAerate, probe libs for necessary skips and lib overrides, apply them,
+         then finally reset the JNAerator output directory -->
+    <java jar="jnaerator.jar" fork="true">
+      <arg value="config.template.jnaerator" />
+      <arg value="-mode" />
+      <arg value="Directory" />
+      <arg value="-f" />
+      <arg value="-v" />
+      <arg value="-o" />
+      <arg value="${jnaerator-output}" />
+    </java>
+    <exec executable="./gen-lib-overrides.sh" />
+    <exec executable="./apply-lib-overrides.sh" />
+    <antcall target="clean-jnaerator" />
+    <mkdir dir="${jnaerator-output}" />
+  </target>
+
+  <target name="jnaerate" >
     <java jar="jnaerator.jar" fork="true">
       <arg value="config.jnaerator" />
       <arg value="-mode" />
@@ -104,8 +122,15 @@
     <delete dir="${tests-bin}" />
   </target>
 
+  <target name="clean-lib-probe">
+   <delete>
+     <fileset dir="." includes="_lib_*" />
+     <fileset file="config.jnaerator" />
+   </delete>
+  </target>
+
   <target name="clean"
           description="delete everything that can be regenerated automatically"
-          depends="clean-tests,clean-compiled,clean-jnaerator" />
+          depends="clean-tests,clean-compiled,clean-jnaerator,clean-lib-probe" />
 
 </project>
