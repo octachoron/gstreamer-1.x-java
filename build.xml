@@ -41,7 +41,7 @@
     <mkdir dir="${jnaerator-output}" />
   </target>
 
-  <target name="jnaerate" >
+  <target name="jnaerate" depends="probe-libs">
     <java jar="jnaerator.jar" fork="true">
       <jvmarg value="-Xss4m" />
       <arg value="config.jnaerator" />
