@@ -43,6 +43,7 @@
 
   <target name="jnaerate" >
     <java jar="jnaerator.jar" fork="true">
+      <jvmarg value="-Xss4m" />
       <arg value="config.jnaerator" />
       <arg value="-mode" />
       <arg value="Directory" />
