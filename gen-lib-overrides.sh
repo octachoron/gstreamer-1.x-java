@@ -37,10 +37,11 @@ echo "Shared libraries searched: $lib_so_paths"
 nm -D --defined-only --print-file-name $lib_so_paths | tr ':' ' ' \
     | cut -d ' ' -f 1,4 > $mappings_file
 
+qual='((protected native static)|(public static native)|(protected static native)|(public native static))'
 for lib in $libs; do
   lib_file=$lib$lib_postfix
-  funs=`egrep 'protected native static [a-zA-Z0-9_]* [a-zA-Z0-9_]*' $lib_file \
-    | sed -r 's/\s*protected native static [a-zA-Z0-9_]* ([a-zA-Z0-9_]*).*/\1/g'`
+  funs=`egrep  "$qual [a-zA-Z0-9_]* [a-zA-Z0-9_]*" $lib_file \
+    | sed -r "s/\s*$qual [a-zA-Z0-9_]* ([a-zA-Z0-9_]*).*/\6/g"`
   lib_so=$libdir/lib`echo $lib | tr A-Z a-z`$lib_so_postfix
   for fun in $funs; do
     fun_lib=`egrep "^[^ ]+ $fun$" $mappings_file | cut -d ' ' -f 1`
